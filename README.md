@@ -26,7 +26,7 @@ I don't take any credit for this plugin, I ran [@sayanarijit](https://github.com
   ```bash
   mkdir -p ~/.config/xplr/plugins
 
-  git clone https://github.com/dtomvan/paste.rs.xplr ~/.config/xplr/plugins/paste-rs
+  git clone https://github.com/dtomvan/paste-rs.xplr ~/.config/xplr/plugins/paste-rs
   ```
 
 - Require the module in `~/.config/xplr/init.lua`
