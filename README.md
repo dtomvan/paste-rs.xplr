@@ -37,14 +37,19 @@ I don't take any credit for this plugin, I ran [@sayanarijit](https://github.com
   require("paste-rs").setup{
     mode = "default",
     key = "P",
+    db_path = "$HOME/paste.rs.list"
   }
 
-  -- Type `Pp` and enjoy.
+  -- Type `Pp` to paste files.
+  -- Type `Pl` to list pasted files.
+  -- Type `Po` to fuzzy search and open the link to file in browser.
+  -- Type `Pd` to fuzzy search and delete the file from paste.rs.
   ```
 
 
 ## Features
 
 - Paste your files directly to paste.rs
-- List all of your uploads (from the current session) and open them later.
-- Delete your uploads (from the current session)
+- Set `db_path` to a file in a permanent location to persist links across
+  sessions.
+- Fuzzy search with preview to open in browser or delete files from paste.rs.
