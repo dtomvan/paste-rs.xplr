@@ -1,6 +1,8 @@
 # paste.rs.xplr
 Use this plugin to paste your files to [paste.rs](https://paste.rs/), and open/delete them later in fzf.
 
+![xplr-paste-rs.gif](https://s4.gifyu.com/images/xplr-paste-rs.gif)
+
 ## Credit
 I don't take any credit for this plugin, I ran [@sayanarijit](https://github.com/sayanarijit)'s yml-to-lua converter over his own xplr hack. 
 
