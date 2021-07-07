@@ -1,5 +1,19 @@
 local function setup(args)
     local xplr = xplr
+
+    if args == nil then
+        args = {}
+    end
+    if args.mode == nil then
+        args.mode = "default"
+    end
+    if args.key == nil then
+        args.key = "P"
+    end
+    if args.db_path == nil then
+        args.db_path = "${XPLR_SESSION_PATH:?}/paste.rs.list"
+    end
+
     xplr.config.modes.custom["paste.rs"] = {
         name = "paste.rs",
         key_bindings = {
@@ -10,7 +24,7 @@ local function setup(args)
                         {
                             BashExec = [===[
                             PTH=$(basename "${XPLR_FOCUS_PATH:?}")
-                            DEST="${XPLR_SESSION_PATH:?}/paste.rs.list"
+                            DEST="]===] .. args.db_path .. [===["
                             curl --data-binary "@${PTH:?}" "https://paste.rs" | tee -a "${DEST:?}"
                             echo
                             read -p "[enter to continue]"
@@ -24,7 +38,7 @@ local function setup(args)
                     messages = {
                         {
                             BashExec = [===[
-                            cat "${XPLR_SESSION_PATH:?}/paste.rs.list"
+                            cat "]===] .. args.db_path .. [===["
                             echo
                             read -p "[enter to continue]"
                             ]===],
@@ -37,7 +51,7 @@ local function setup(args)
                     messages = {
                         {
                             BashExec = [===[
-                            DEST="${XPLR_SESSION_PATH:?}/paste.rs.list"
+                            DEST="]===] .. args.db_path .. [===["
                             URL=$(fzf --preview "curl -s '{}'" < "${DEST:?}")
                             if [ "$URL" ]; then
                                 OPENER=$(which xdg-open)
@@ -53,7 +67,7 @@ local function setup(args)
                         messages = {
                             {
                                 BashExec = [===[
-                                DEST="${XPLR_SESSION_PATH:?}/paste.rs.list"
+                                DEST="]===] .. args.db_path .. [===["
                                 URL=$(fzf --preview "curl -s '{}'" < "${DEST:?}")
                                 if [ "$URL" ]; then
                                     curl -X DELETE "${URL:?}"
@@ -75,15 +89,7 @@ local function setup(args)
                     }
                 }
     }
-    if args == nil then
-        args = {}
-    end
-    if args.mode == nil then
-        args.mode = "default"
-    end
-    if args.key == nil then
-        args.key = "P"
-    end
+
     xplr.config.modes.builtin[args.mode].key_bindings.on_key[args.key] = {
         help = "paste.rs",
         messages = {
