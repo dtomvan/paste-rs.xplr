@@ -57,7 +57,7 @@ local function setup(args)
                                 URL=$(fzf --preview "curl -s '{}'" < "${DEST:?}")
                                 if [ "$URL" ]; then
                                     curl -X DELETE "${URL:?}"
-                                    sd "${URL:?}n" "" "${DEST:?}"
+                                    sd "${URL:?}\n" "" "${DEST:?}"
                                     echo
                                     read -p "[enter to continue]"
                                 fi
