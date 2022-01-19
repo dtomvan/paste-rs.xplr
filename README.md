@@ -1,10 +1,12 @@
 # paste.rs.xplr
+
 Use this plugin to paste your files to [paste.rs](https://paste.rs/), and open/delete them later in fzf.
 
 ![xplr-paste-rs.gif](https://s4.gifyu.com/images/xplr-paste-rs.gif)
 
 ## Credit
-I don't take any credit for this plugin, I ran [@sayanarijit](https://github.com/sayanarijit)'s yml-to-lua converter over his own xplr hack. 
+
+I don't take any credit for this plugin, I ran [@sayanarijit](https://github.com/sayanarijit)'s yml-to-lua converter over his own xplr hack.
 
 ## Requirements
 
@@ -12,13 +14,17 @@ I don't take any credit for this plugin, I ran [@sayanarijit](https://github.com
 - [sd](https://github.com/chmln/sd)
 - [curl](https://github.com/curl/curl)
 
-
 ## Installation
 
 - Add the following line in `~/.config/xplr/init.lua`
 
   ```lua
-  package.path = os.getenv("HOME") .. '/.config/xplr/plugins/?/src/init.lua'
+  local home = os.getenv("HOME")
+  package.path = home
+  .. "/.config/xplr/plugins/?/init.lua;"
+  .. home
+  .. "/.config/xplr/plugins/?.lua;"
+  .. package.path
   ```
 
 - Clone the plugin
@@ -33,9 +39,9 @@ I don't take any credit for this plugin, I ran [@sayanarijit](https://github.com
 
   ```lua
   require("paste-rs").setup()
-  
+
   -- Or
-  
+
   require("paste-rs").setup{
     mode = "default",
     key = "P",
@@ -47,7 +53,6 @@ I don't take any credit for this plugin, I ran [@sayanarijit](https://github.com
   -- Type `Po` to fuzzy search and open the link to file in browser.
   -- Type `Pd` to fuzzy search and delete the file from paste.rs.
   ```
-
 
 ## Features
 
