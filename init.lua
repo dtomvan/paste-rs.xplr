@@ -25,7 +25,7 @@ local function setup(args)
                             BashExec = [===[
                             PTH=$(basename "${XPLR_FOCUS_PATH:?}")
                             DEST="]===] .. args.db_path .. [===["
-                            curl --data-binary "@${PTH:?}" "https://paste.rs" | tee -a "${DEST:?}"
+                            curl --data-binary "@${PTH:?}" "https://paste.rs" -w "\n" | tee -a "${DEST:?}"
                             echo
                             read -p "[enter to continue]"
                             ]===],
